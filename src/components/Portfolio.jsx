@@ -15,9 +15,9 @@ export default function Portfolio() {
 
   // Hero slideshow images — update paths with your real screenshots
   const heroImages = [
-    '/assets/hero1.jpg',
-    '/assets/hero2.jpg',
-    '/assets/hero3.jpg'
+    './assets/hero1.jpg',
+    './assets/hero2.jpg',
+    './assets/hero3.jpg'
   ]
 
   useEffect(() => {
@@ -43,7 +43,7 @@ export default function Portfolio() {
       role: 'Lead Developer / Designer',
       engine: 'Unity • C# • Shader Graph',
       desc: 'Final Year Project — a puzzle game exploring swap-based mechanics, environmental storytelling, and subtle audio cues to guide the player.',
-      img: '/assets/mindshift-preview.jpg',
+      img: './assets/thinkingSpace_preview.jpg',
       play: 'https://your-itch-or-play-link',
       repo: 'https://github.com/robofett28/TradingSpace'
     }
