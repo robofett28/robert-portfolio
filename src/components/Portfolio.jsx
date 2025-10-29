@@ -1,5 +1,5 @@
 /*
-GameDev Portfolio — React + Tailwind single-file component (Dark + Red Theme, Hero Slideshow with Hover Pause + Manual Arrows)
+GameDev Portfolio
 File: Portfolio.jsx
 Author: Robert Lyons
 */
@@ -43,8 +43,8 @@ export default function Portfolio() {
       role: 'Lead Developer / Designer',
       engine: 'Unity • C# • Shader Graph',
       desc: 'Final Year Project — a puzzle game exploring swap-based mechanics, environmental storytelling, and subtle audio cues to guide the player.',
-      img: './assets/thinkingSpace_preview.jpg',
-      play: 'https://your-itch-or-play-link',
+      img: './assets/tradingSpace_preview.jpg',
+      play: 'itch-link-here',
       repo: 'https://github.com/robofett28/TradingSpace'
     }
   ]
@@ -119,7 +119,7 @@ export default function Portfolio() {
         {/* PROJECTS */}
         <section id="projects" className="py-12">
           <h3 className="text-2xl font-bold text-red-500 mb-2">Selected Projects</h3>
-          <p className="text-gray-400 text-sm mb-6">Focused prototypes and vertical slices — complete with code and playable builds.</p>
+          <p className="text-gray-400 text-sm mb-6">Focused prototypes complete with code and playable builds.</p>
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {projects.map((p) => (
@@ -153,8 +153,8 @@ export default function Portfolio() {
               <ul className="grid sm:grid-cols-2 gap-2 text-sm text-gray-400">
                 <li><strong>Languages:</strong> C#, C++, Python</li>
                 <li><strong>Engines:</strong> Unity, Unreal</li>
-                <li><strong>Tools:</strong> Git, Blender, Substance, FMOD</li>
-                <li><strong>Focus:</strong> Gameplay Systems, Puzzle Design, Prototyping</li>
+                <li><strong>Tools:</strong> Git, Blender, Substance</li>
+                <li><strong>Focus:</strong> Gameplay Systems, Puzzle Design, Prototyping, QA</li>
               </ul>
             </div>
             <div className="bg-gray-900/60 p-4 rounded-xl border border-gray-800">
@@ -169,7 +169,7 @@ export default function Portfolio() {
         <section id="contact" className="py-12">
           <div className="rounded-xl bg-gray-900/80 p-6 border border-gray-800 text-center">
             <h3 className="text-2xl font-bold text-red-500 mb-2">Contact</h3>
-            <p className="text-gray-300">Email: <a href="mailto:lyonsr71@gmail.com" className="underline hover:text-red-500">robert.lyons@example.com</a></p>
+            <p className="text-gray-300">Email: <a href="mailto:lyonsr71@gmail.com" className="underline hover:text-red-500">lyonsr71@gmail.com</a></p>
             <p className="text-gray-400 text-sm mt-2">LinkedIn • GitHub • Itch.io</p>
             <a href="/Robert_Lyons_CV.pdf" download className="inline-block mt-4 px-4 py-2 bg-red-600 text-black rounded-md font-semibold hover:bg-red-700">Download CV (PDF)</a>
           </div>
