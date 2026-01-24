@@ -17,7 +17,8 @@ export default function Portfolio() {
   const heroImages = [
     './assets/hero1.jpg',
     './assets/hero2.jpg',
-    './assets/hero3.jpg'
+    './assets/hero3.jpg',
+    './assets/hero4.jpg'
   ]
 
   useEffect(() => {
