@@ -12,13 +12,14 @@ export default function Portfolio() {
   const [selected, setSelected] = useState(null)
   const [currentImage, setCurrentImage] = useState(0)
   const [isPaused, setIsPaused] = useState(false)
+  const [modalImage, setModalImage] = useState(0)
 
   // Hero slideshow images — update paths with your real screenshots
   const heroImages = [
     './assets/hero1.jpg',
-    './assets/hero2.jpg',
+    './assets/tradingSpace_preview.jpg',
     './assets/hero3.jpg',
-    './assets/hero4.jpg'
+    './assets/alienJungle_01.jpg'
   ]
 
   useEffect(() => {
@@ -43,10 +44,30 @@ export default function Portfolio() {
       title: 'Trading Space',
       role: 'Lead Developer / Designer',
       engine: 'Unity • C# • Shader Graph',
-      desc: 'Final Year Project — a puzzle game exploring swap-based mechanics, environmental storytelling, and subtle audio cues to guide the player.',
-      img: './assets/tradingSpace_preview.jpg',
+      desc: 'Final Year Project: Exploring how design ideas and frameworks can help improve player experience in a swap-based puzzle game.',
+      images: [
+        './assets/tradingSpace_preview.jpg'
+        // add more if you have them:
+        // './assets/tradingSpace_02.jpg',
+        // './assets/tradingSpace_03.jpg',
+      ],
       play: 'itch-link-here',
-      repo: 'https://github.com/robofett28/TradingSpace'
+      repo: 'https://github.com/robofett28/Trading-Space'
+    },
+    {
+      id: 2,
+      title: 'Alien Jungle Crash Site',
+      role: '3D Modelling / Environment Art',
+      engine: 'Unreal Engine • 3D Modelling • Materials/Lighting',
+      desc: 'A stylised alien jungle environment featuring a crashed ship scene. Focused on composition, set dressing, lighting, and mood.',
+      images: [
+        './assets/alienJungle_01.jpg',
+        './assets/alienJungle_02.jpg',
+        './assets/alienJungle_03.jpg',
+        './assets/hero3.jpg'
+      ],
+      play: null,
+      repo: 'https://github.com/robofett28/CS4085_COMPUTER_GRAPHICS2/tree/main/Content'
     }
   ]
 
@@ -65,8 +86,10 @@ export default function Portfolio() {
         {/* HERO */}
         <section className="flex flex-col items-center text-center py-20">
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
-            <h2 className="text-4xl md:text-6xl font-bold mb-4 text-white">Crafting Puzzles with Purpose</h2>
-            <p className="max-w-2xl mx-auto text-gray-400 text-lg mb-8">Final Year Game Development student at the University of Limerick — designing games that challenge perception and reward curiosity.</p>
+            <h2 className="text-4xl md:text-6xl font-bold mb-4 text-white">Creating Games with Purpose</h2>
+            <p className="max-w-2xl mx-auto text-gray-400 text-lg mb-8">
+              Final Year Game Development student at the University of Limerick, designing games that challenge perception and reward curiosity.
+            </p>
             <div className="flex gap-3 justify-center">
               <a href="#projects" className="px-6 py-3 bg-red-600 text-black rounded-md font-semibold hover:bg-red-700">View Projects</a>
               <a href="/Robert_Lyons_CV.pdf" download className="px-6 py-3 border border-gray-700 rounded-md text-gray-300 hover:text-red-500">Download CV</a>
@@ -124,21 +147,52 @@ export default function Portfolio() {
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {projects.map((p) => (
-              <motion.article key={p.id} whileHover={{ y: -6 }} className="rounded-xl bg-gradient-to-b from-gray-900 to-black p-4 border border-gray-800 hover:border-red-600">
+              <motion.article
+                key={p.id}
+                whileHover={{ y: -6 }}
+                className="rounded-xl bg-gradient-to-b from-gray-900 to-black p-4 border border-gray-800 hover:border-red-600"
+              >
                 <div className="rounded-lg overflow-hidden aspect-[16/9] bg-black">
-                  <img src={p.img} alt={p.title} className="object-cover w-full h-full" />
+                  <img src={p.images?.[0]} alt={p.title} className="object-cover w-full h-full" />
                 </div>
+
                 <div className="mt-3">
                   <h4 className="font-semibold text-white">{p.title}</h4>
                   <div className="text-xs text-gray-500">{p.engine}</div>
                   <p className="mt-2 text-gray-300 text-sm line-clamp-3">{p.desc}</p>
                 </div>
+
                 <div className="mt-4 flex items-center justify-between">
                   <div className="flex gap-2">
-                    <a href={p.play} target="_blank" rel="noreferrer" className="text-xs px-3 py-1 bg-red-600 text-black rounded-sm font-medium hover:bg-red-700">Play</a>
-                    <a href={p.repo} target="_blank" rel="noreferrer" className="text-xs px-3 py-1 border border-gray-700 rounded-sm text-gray-300 hover:text-red-500">Code</a>
+                    {p.play && (
+                      <a
+                        href={p.play}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="text-xs px-3 py-1 bg-red-600 text-black rounded-sm font-medium hover:bg-red-700"
+                      >
+                        Play
+                      </a>
+                    )}
+                    <a
+                      href={p.repo}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="text-xs px-3 py-1 border border-gray-700 rounded-sm text-gray-300 hover:text-red-500"
+                    >
+                      Code
+                    </a>
                   </div>
-                  <button onClick={() => setSelected(p)} className="text-xs text-gray-400 hover:text-red-500 underline">Details</button>
+
+                  <button
+                    onClick={() => {
+                      setSelected(p)
+                      setModalImage(0)
+                    }}
+                    className="text-xs text-gray-400 hover:text-red-500 underline"
+                  >
+                    Details
+                  </button>
                 </div>
               </motion.article>
             ))}
@@ -150,18 +204,24 @@ export default function Portfolio() {
           <div className="grid md:grid-cols-3 gap-6 items-start">
             <div className="md:col-span-2">
               <h3 className="text-2xl font-bold text-red-500 mb-3">About Me</h3>
-              <p className="text-gray-300 mb-4">I’m Robert Lyons, a final-year Video Game Development student at the University of Limerick. I specialise in puzzle mechanics, player progression systems, and refined level design. My approach blends logical design with creative expression.</p>
+              <p className="text-gray-300 mb-4">
+                I’m Robert Lyons, a final-year Video Game Development student at the University of Limerick. I specialise in puzzle mechanics,
+                player progression systems, and refined level design. My approach blends logical design with creative expression.
+              </p>
               <ul className="grid sm:grid-cols-2 gap-2 text-sm text-gray-400">
-                <li><strong>Languages:</strong> C#, C++, Python</li>
+                <li><strong>Languages:</strong> Java, C#, C++, Python</li>
                 <li><strong>Engines:</strong> Unity, Unreal</li>
                 <li><strong>Tools:</strong> Git, Blender, Substance</li>
                 <li><strong>Focus:</strong> Gameplay Systems, Puzzle Design, Prototyping, QA</li>
               </ul>
             </div>
+
             <div className="bg-gray-900/60 p-4 rounded-xl border border-gray-800">
               <h4 className="font-semibold text-white">Education</h4>
               <p className="text-sm text-gray-300 mt-2">BSc Video Game Development — University of Limerick</p>
-              <p className="text-xs text-gray-400 mt-4">Currently completing my Final Year Project — developing a Unity-based puzzle game that challenges perception and spatial reasoning.</p>
+              <p className="text-xs text-gray-400 mt-4">
+                Currently completing my Final Year Project: Developing a Unity-based puzzle game that challenges perception and spatial reasoning.
+              </p>
             </div>
           </div>
         </section>
@@ -170,32 +230,115 @@ export default function Portfolio() {
         <section id="contact" className="py-12">
           <div className="rounded-xl bg-gray-900/80 p-6 border border-gray-800 text-center">
             <h3 className="text-2xl font-bold text-red-500 mb-2">Contact</h3>
-            <p className="text-gray-300">Email: <a href="mailto:lyonsr71@gmail.com" className="underline hover:text-red-500">lyonsr71@gmail.com</a></p>
+            <p className="text-gray-300">
+              Email:{' '}
+              <a href="mailto:lyonsr71@gmail.com" className="underline hover:text-red-500">lyonsr71@gmail.com</a>
+            </p>
             <p className="text-gray-400 text-sm mt-2">LinkedIn • GitHub • Itch.io</p>
-            <a href="/Robert_Lyons_CV.pdf" download className="inline-block mt-4 px-4 py-2 bg-red-600 text-black rounded-md font-semibold hover:bg-red-700">Download CV (PDF)</a>
+            <a
+              href="/Robert_Lyons_CV.pdf"
+              download
+              className="inline-block mt-4 px-4 py-2 bg-red-600 text-black rounded-md font-semibold hover:bg-red-700"
+            >
+              Download CV (PDF)
+            </a>
           </div>
         </section>
       </main>
 
-      <footer className="mt-12 py-8 text-center text-gray-500 text-sm border-t border-gray-800">© {new Date().getFullYear()} Robert Lyons — Portfolio built with React & Tailwind</footer>
+      <footer className="mt-12 py-8 text-center text-gray-500 text-sm border-t border-gray-800">
+        © {new Date().getFullYear()} Robert Lyons — Portfolio built with React & Tailwind
+      </footer>
 
       {/* DETAILS MODAL */}
       {selected && (
         <div className="fixed inset-0 z-50 flex items-center justify-center">
           <div className="absolute inset-0 bg-black/70" onClick={() => setSelected(null)} />
-          <motion.div initial={{ scale: 0.95, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} className="relative z-10 max-w-3xl w-full p-6 bg-black rounded-2xl border border-gray-800">
-            <div className="flex items-start gap-4">
-              <div className="w-1/3 overflow-hidden rounded-lg">
-                <img src={selected.img} alt={selected.title} className="object-cover w-full h-40" />
+
+          <motion.div
+            initial={{ scale: 0.95, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            className="relative z-10 max-w-6xl w-full p-8 bg-black rounded-2xl border border-gray-800"
+            >
+            <div className="flex items-start gap-6">
+              {/* MINI GALLERY */}
+              <div className="w-1/2">
+                <div className="relative overflow-hidden rounded-lg border border-gray-800 bg-black">
+                  <img
+                    src={selected.images?.[modalImage]}
+                    alt={`${selected.title} screenshot ${modalImage + 1}`}
+                    className="object-cover w-full h-[360px] md:h-[420px]"
+                  />
+
+                  {selected.images?.length > 1 && (
+                    <>
+                      <button
+                        onClick={() =>
+                          setModalImage((prev) => (prev - 1 + selected.images.length) % selected.images.length)
+                        }
+                        className="absolute left-2 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white p-1.5 rounded-full"
+                      >
+                        <ChevronLeft className="w-4 h-4" />
+                      </button>
+                      <button
+                        onClick={() => setModalImage((prev) => (prev + 1) % selected.images.length)}
+                        className="absolute right-2 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white p-1.5 rounded-full"
+                      >
+                        <ChevronRight className="w-4 h-4" />
+                      </button>
+                    </>
+                  )}
+                </div>
+
+                {selected.images?.length > 1 && (
+                  <div className="mt-3 grid grid-cols-4 gap-2">
+                    {selected.images.map((img, i) => (
+                      <button
+                        key={img}
+                        onClick={() => setModalImage(i)}
+                        className={`rounded-md overflow-hidden border ${
+                          i === modalImage ? 'border-red-500' : 'border-gray-800'
+                        }`}
+                        title={`View image ${i + 1}`}
+                      >
+                        <img src={img} alt="" className="h-12 w-full object-cover" />
+                      </button>
+                    ))}
+                  </div>
+                )}
               </div>
+
+              {/* DETAILS */}
               <div className="flex-1">
                 <h4 className="text-xl font-semibold text-red-500">{selected.title}</h4>
                 <div className="text-xs text-gray-500">{selected.role} • {selected.engine}</div>
                 <p className="mt-3 text-gray-300">{selected.desc}</p>
+
                 <div className="mt-4 flex gap-3">
-                  <a href={selected.play} target="_blank" rel="noreferrer" className="px-3 py-2 bg-red-600 text-black rounded hover:bg-red-700">Play</a>
-                  <a href={selected.repo} target="_blank" rel="noreferrer" className="px-3 py-2 border border-gray-700 rounded text-gray-300 hover:text-red-500">Code</a>
-                  <button onClick={() => setSelected(null)} className="px-3 py-2 border border-gray-700 rounded text-gray-300 hover:text-red-500">Close</button>
+                  {selected.play && (
+                    <a
+                      href={selected.play}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="px-3 py-2 bg-red-600 text-black rounded hover:bg-red-700"
+                    >
+                      Play
+                    </a>
+                  )}
+                  <a
+                    href={selected.repo}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="px-3 py-2 border border-gray-700 rounded text-gray-300 hover:text-red-500"
+                  >
+                    Code
+                  </a>
+                  <button
+                    onClick={() => setSelected(null)}
+                    className="px-3 py-2 border border-gray-700 rounded text-gray-300 hover:text-red-500"
+                  >
+                    Close
+                  </button>
                 </div>
               </div>
             </div>
