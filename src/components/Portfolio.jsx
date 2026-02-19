@@ -92,7 +92,7 @@ export default function Portfolio() {
             </p>
             <div className="flex gap-3 justify-center">
               <a href="#projects" className="px-6 py-3 bg-red-600 text-black rounded-md font-semibold hover:bg-red-700">View Projects</a>
-              <a href="/Robert_Lyons_CV.pdf" download className="px-6 py-3 border border-gray-700 rounded-md text-gray-300 hover:text-red-500">Download CV</a>
+              <a href="./assets/Robert_Lyons_CV.pdf" download className="px-6 py-3 border border-gray-700 rounded-md text-gray-300 hover:text-red-500">Download CV</a>
             </div>
           </motion.div>
 
@@ -236,7 +236,7 @@ export default function Portfolio() {
             </p>
             <p className="text-gray-400 text-sm mt-2">LinkedIn • GitHub • Itch.io</p>
             <a
-              href="/Robert_Lyons_CV.pdf"
+              href="./assets/Robert_Lyons_CV.pdf"
               download
               className="inline-block mt-4 px-4 py-2 bg-red-600 text-black rounded-md font-semibold hover:bg-red-700"
             >
