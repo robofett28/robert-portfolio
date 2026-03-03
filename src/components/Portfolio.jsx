@@ -84,7 +84,9 @@ export default function Portfolio() {
 
       <main className="max-w-6xl mx-auto px-6">
         {/* HERO */}
-        <section className="flex flex-col items-center text-center py-20">
+        <section className="relative flex flex-col items-center text-center py-20">
+          <div className="absolute inset-0 -z-10 bg-gradient-to-b from-transparent via-gray-900/20 to-transparent" />
+
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
             <h2 className="text-4xl md:text-6xl font-bold mb-4 text-white">Creating Games with Purpose</h2>
             <p className="max-w-2xl mx-auto text-gray-400 text-lg mb-8">
@@ -141,7 +143,9 @@ export default function Portfolio() {
         </section>
 
         {/* PROJECTS */}
-        <section id="projects" className="py-12">
+        <section id="projects" className="relative py-12">
+          <div className="absolute inset-0 -z-10 bg-gradient-to-b from-transparent via-gray-900/20 to-transparent" />
+
           <h3 className="text-2xl font-bold text-red-500 mb-2">Selected Projects</h3>
           <p className="text-gray-400 text-sm mb-6">Focused prototypes complete with code and playable builds.</p>
 
@@ -200,7 +204,9 @@ export default function Portfolio() {
         </section>
 
         {/* ABOUT */}
-        <section id="about" className="py-12">
+        <section id="about" className="relative py-12">
+          <div className="absolute inset-0 -z-10 bg-gradient-to-b from-transparent via-gray-900/20 to-transparent" />
+
           <div className="grid md:grid-cols-3 gap-6 items-start">
             <div className="md:col-span-2">
               <h3 className="text-2xl font-bold text-red-500 mb-3">About Me</h3>
@@ -227,7 +233,9 @@ export default function Portfolio() {
         </section>
 
         {/* CONTACT */}
-        <section id="contact" className="py-12">
+        <section id="contact" className="relative py-12">
+          <div className="absolute inset-0 -z-10 bg-gradient-to-b from-transparent via-gray-900/20 to-transparent" />
+
           <div className="rounded-xl bg-gray-900/80 p-6 border border-gray-800 text-center">
             <h3 className="text-2xl font-bold text-red-500 mb-2">Contact</h3>
             <p className="text-gray-300">
