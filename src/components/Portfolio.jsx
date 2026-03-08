@@ -16,8 +16,8 @@ export default function Portfolio() {
 
   // Hero slideshow images — update paths with your real screenshots
   const heroImages = [
-    './assets/hero1.jpg',
     './assets/tradingSpace_preview.jpg',
+    './assets/hero1.jpg',
     './assets/hero3.jpg',
     './assets/alienJungle_01.jpg'
   ]
@@ -44,7 +44,7 @@ export default function Portfolio() {
       title: 'Trading Space',
       role: 'Lead Developer / Designer',
       engine: 'Unity • C# • Shader Graph',
-      desc: 'Final Year Project: Exploring how design ideas and frameworks can help improve player experience in a swap-based puzzle game.',
+      desc: 'Trading Space is a first-person puzzle game developed as my Final Year Project, built around a core mechanic that allows the player to swap positions with objects in the environment. Players use this mechanic to solve spatial puzzles involving pressure plates, movable objects, and traversal challenges. The project explores how puzzle design frameworks, environmental communication, and gradual mechanic introduction can improve player experience and reduce frustration. Developed in Unity with C#, featuring custom gameplay systems, modular puzzle components, shader-based materials, and a structured level design pipeline.',
       images: [
         './assets/tradingSpace_preview.jpg'
         // add more if you have them:
@@ -242,7 +242,34 @@ export default function Portfolio() {
               Email:{' '}
               <a href="mailto:lyonsr71@gmail.com" className="underline hover:text-red-500">lyonsr71@gmail.com</a>
             </p>
-            <p className="text-gray-400 text-sm mt-2">LinkedIn • GitHub • Itch.io</p>
+            <p className="text-gray-400 text-sm mt-2">
+              <a
+                href="https://www.linkedin.com/in/robert-lyons-948056311/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-red-500 underline"
+              >
+                LinkedIn
+              </a>
+              {' • '}
+              <a
+                href="https://github.com/robofett28"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-red-500 underline"
+              >
+                GitHub
+              </a>
+              {' • '}
+              <a
+                href="https://robofett28.itch.io"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-red-500 underline"
+              >
+                Itch.io
+              </a>
+            </p>
             <a
               href="./assets/Robert_Lyons_CV.pdf"
               download
